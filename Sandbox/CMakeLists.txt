@@ -22,6 +22,10 @@ target_link_libraries(Sandbox Nimbus)
 
 target_include_directories(Sandbox PUBLIC "${CMAKE_SOURCE_DIR}/Nimbus/Source")
 
+if(WIN32)
+	add_compile_definitions(NB_PLATFORM_WINDOWS=1)
+endif()
+
 # Set working directory for VS debugger
 set_target_properties(Sandbox PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Sandbox"

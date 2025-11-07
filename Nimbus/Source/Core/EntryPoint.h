@@ -1,5 +1,4 @@
 #pragma once
-#include <Core\Application.h>
 
 #ifdef NB_PLATFORM_WINDOWS
 
