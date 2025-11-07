@@ -1,8 +1,9 @@
-﻿// Nimbus.h : Include file for standard system include files,
-// or project specific include files.
-
 #pragma once
 
-#include <iostream>
+// For use by Nimbus Applications
 
-// TODO: Reference additional headers your program requires here.
+#include <Core/Application.h>
+
+// --- Entry Point ------------------
+#include "Core/EntryPoint.h"
+// --- Entry Point ------------------
