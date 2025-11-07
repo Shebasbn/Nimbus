@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : CMake project for Nimbus, include source and define
 # project specific logic here.
 #
-
+cmake_minimum_required(VERSION 3.11)
 set(PROJECT Nimbus)
 
 # Add source to this project.
@@ -10,19 +10,30 @@ set(SOURCES
 	"Source/Core/Application.cpp"
 	"Source/Core/Core.h"
 	"Source/Core/EntryPoint.h"
-	"Source/Nimbus.h")
+	"Source/Nimbus.h" 
+	"Source/Core/Log.h"
+	"Source/Core/Log.cpp")
 
 #set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
+#if(NOT TARGET spdlog)
+   # Stand-alone build
+ #   find_package(spdlog REQUIRED)
+#endif()
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 add_library (${PROJECT} STATIC)
 
 set_target_properties(${PROJECT} PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/${PLATFORM}/${PROJECT}"
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/${PROJECT}"
 )
 
 target_sources(${PROJECT} PRIVATE ${SOURCES})
 
-target_include_directories(${PROJECT} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Source/Core")
+target_include_directories(${PROJECT} PRIVATE 
+						   "${CMAKE_CURRENT_SOURCE_DIR}/Source/Core"
+						   "${CMAKE_CURRENT_SOURCE_DIR}/Source")
+
+target_link_libraries(${PROJECT} PUBLIC spdlog)
 #message(STATUS "HI ${CMAKE_CURRENT_SOURCE_DIR}/Source/Core")
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Source)
 
