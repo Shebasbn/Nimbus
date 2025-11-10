@@ -7,5 +7,7 @@
 		#define NIMBUS_API __declspec(dllimport)
 	#endif
 #else
-	//#error Nimbus only supports Windows!
+	#error Nimbus only supports Windows!
 #endif
+
+#define BIT(n) (1 << n)

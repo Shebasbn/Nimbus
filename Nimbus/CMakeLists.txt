@@ -12,7 +12,11 @@ set(SOURCES
 	"Source/Core/EntryPoint.h"
 	"Source/Nimbus.h" 
 	"Source/Core/Log.h"
-	"Source/Core/Log.cpp")
+	"Source/Core/Log.cpp"
+	"Source/Core/Event/Event.h"
+	"Source/Core/Event/ApplicationEvent.h"
+	"Source/Core/Event/KeyEvent.h"
+	"Source/Core/Event/MouseEvent.h")
 
 #set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
@@ -28,6 +32,8 @@ set_target_properties(${PROJECT} PROPERTIES
 )
 
 target_sources(${PROJECT} PRIVATE ${SOURCES})
+
+target_precompile_headers(${PROJECT} PRIVATE "Source/nbpch.h")
 
 target_include_directories(${PROJECT} PRIVATE 
 						   "${CMAKE_CURRENT_SOURCE_DIR}/Source/Core"
