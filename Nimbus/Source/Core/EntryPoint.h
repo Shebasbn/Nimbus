@@ -12,7 +12,10 @@ int main(int argc, char** argv)
 	NB_INFO("Hello, welcome to the Nimbus Engine! Var={0}!", a);
 
 	auto app = Nimbus::CreateApplication();
-	app->Run();
+	if (app->Init())
+	{
+		app->Run();
+	}
 	delete app;
 }
 

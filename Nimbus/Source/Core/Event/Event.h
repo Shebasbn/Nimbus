@@ -1,5 +1,5 @@
 #pragma once
-
+#include "nbpch.h"
 #include "Core/Core.h"
 
 namespace Nimbus

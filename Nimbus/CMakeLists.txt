@@ -16,7 +16,13 @@ set(SOURCES
 	"Source/Core/Event/Event.h"
 	"Source/Core/Event/ApplicationEvent.h"
 	"Source/Core/Event/KeyEvent.h"
-	"Source/Core/Event/MouseEvent.h")
+	"Source/Core/Event/MouseEvent.h" 
+	"Source/Core/Layer.h" 
+	"Source/Core/Layer.cpp" 
+	"Source/Core/LayerStack.cpp" 
+	"Source/Core/LayerStack.h" 
+	"Source/Core/Window.h" 
+	"Source/Platform/Windows/WindowsWindow.h" "Source/Platform/Windows/WIndowsWindow.cpp")
 
 #set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
 
@@ -44,7 +50,9 @@ target_link_libraries(${PROJECT} PUBLIC spdlog)
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Source)
 
 if(WIN32)
-	add_compile_definitions(NB_PLATFORM_WINDOWS=1)
+	add_compile_definitions(NB_PLATFORM_WINDOWS=1 _UNICODE UNICODE)
+	target_compile_definitions(${PROJECT} PRIVATE
+		$<IF:$<CONFIG:Debug>, NB_ENABLE_ASSERTS=1, ""> )
 endif()
 
 #target_compile_definitions(PROJECT PUBLIC NB_BUILD_DLL=0)
